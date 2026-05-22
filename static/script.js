@@ -28,6 +28,13 @@ function updateFormatNote() {
 formatSelect.addEventListener("change", updateFormatNote);
 updateFormatNote();
 
+function updateDownloadBtn() {
+  downloadBtn.disabled = !outputDir.value.trim();
+}
+
+outputDir.addEventListener("input", updateDownloadBtn);
+updateDownloadBtn();
+
 subsToggle.addEventListener("change", () => {
   subtitleOpts.hidden = !subsToggle.checked;
 });
@@ -135,6 +142,7 @@ browseBtn.addEventListener("click", async () => {
     if (res.ok) {
       const data = await res.json();
       outputDir.value = data.path;
+      updateDownloadBtn();
     }
   } catch {
     // ignore
@@ -161,6 +169,12 @@ downloadBtn.addEventListener("click", async () => {
     return;
   }
 
+  const dir = outputDir.value.trim();
+  if (!dir) {
+    browseBtn.focus();
+    return;
+  }
+
   abortController = new AbortController();
   downloadBtn.disabled = true;
   downloadBtn.textContent = "Downloading\u2026";
@@ -171,7 +185,7 @@ downloadBtn.addEventListener("click", async () => {
     const body = {
       urls,
       format: formatSelect.value,
-      output_dir: outputDir.value.trim() || "./downloads",
+      output_dir: dir,
       embed_thumbnail: embedThumb.checked,
       subtitles: subsToggle.checked,
       subtitle_langs: subLangs.value.trim() || "en",
