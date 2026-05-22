@@ -2,18 +2,18 @@
 
 <p align="center">ddlp</p>
 
-yt-dlp frontend for local use.
+yt-dlp frontend for local use. made because i can never remember yt-dlp flags and got tired of begging claude to remind me.
 
-## Run locally
+## run locally
 
     pip install -r requirements.txt
     uvicorn main:app
 
-Open http://localhost:8000
+open http://localhost:8000
 
-## Run with Docker
+## run with docker
 
     docker build -t ddlp .
     docker run -d -p 8000:8000 ddlp
 
-Open http://localhost:8000
+open http://localhost:8000
