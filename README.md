@@ -6,6 +6,7 @@ yt-dlp frontend for local use. made because i can never remember yt-dlp flags an
 
 ## run locally
 
+    git clone https://github.com/ufraaan/ddlp && cd ddlp
     pip install -r requirements.txt
     uvicorn main:app
 
