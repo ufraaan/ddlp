@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ddlp</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬇</text></svg>">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>ddlp</h1>
+      <p class="subtitle">download videos</p>
+    </header>
+
+    <main>
+      <div class="url-section">
+        <label>URLs</label>
+        <div id="url-list">
+          <div class="url-row">
+            <input type="text" class="url-input" placeholder="https://youtube.com/watch?v=..." autofocus>
+          </div>
+        </div>
+        <button id="add-url" class="btn-sm" title="Add another URL">+ Add URL</button>
+      </div>
+
+      <div class="options">
+        <div class="field">
+          <label for="format">Format</label>
+          <select id="format">
+            <option value="best">Best quality</option>
+            <option value="mp4">MP4</option>
+            <option value="webm">WebM</option>
+            <option value="audio-mp3">Audio (MP3)</option>
+            <option value="audio-opus">Audio (Opus)</option>
+          </select>
+          <p id="format-note" class="format-note"></p>
+        </div>
+        <div class="field">
+          <label for="output-dir">Save to</label>
+          <div class="dir-row">
+            <input type="text" id="output-dir" value="./downloads">
+            <button id="browse-btn" class="btn-browse" title="Browse for folder">Browse</button>
+          </div>
+        </div>
+      </div>
+
+      <details class="more-options">
+        <summary class="more-summary">Options</summary>
+        <div class="more-body">
+          <label class="opt-row">
+            <input type="checkbox" id="embed-thumbnail">
+            <span>Embed thumbnail</span>
+          </label>
+
+          <label class="opt-row">
+            <input type="checkbox" id="subtitles-toggle">
+            <span>Download subtitles</span>
+          </label>
+          <div id="subtitle-opts" class="opt-child" hidden>
+            <input type="text" id="sub-langs" value="en" placeholder="en, es, fr">
+          </div>
+
+          <div id="playlist-section" hidden>
+            <details class="pl-details">
+              <summary class="pl-summary">
+                <span id="playlist-label">Playlist</span>
+                <span id="playlist-count" class="pl-count"></span>
+              </summary>
+              <div class="pl-controls">
+                <div class="pl-field">
+                  <label for="playlist-start">Start</label>
+                  <input type="number" id="playlist-start" value="1" min="1">
+                </div>
+                <div class="pl-field">
+                  <label for="playlist-end">End</label>
+                  <input type="number" id="playlist-end" min="1" placeholder="-">
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </details>
+
+      <button id="download-btn">Download</button>
+
+      <div id="status" class="status" hidden>
+        <div id="log" class="log"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
